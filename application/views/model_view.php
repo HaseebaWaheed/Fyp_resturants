@@ -32,7 +32,7 @@
             <div class="collapse" id="UploadPhotos">
                 <div class="well well-sm">
                     <div class="modal-body">
-                        <div action='<?=base_url("model_controller/gallery_upload/".$id)?>' id="dropzone" class="dropzone"> </div>
+                        <div action='<?=base_url("Model_controller/gallery_upload/".$id)?>' id="dropzone" class="dropzone"> </div>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
             if (confirm('Are you sure you want to delete?')) {
                 var image_ids = [];
                 image_ids.push(parseInt($(this).data('id')));
-                $.post('<?= base_url("model_controller/gallery_delete") ?>', {
+                $.post('<?= base_url("Model_controller/gallery_delete") ?>', {
                     image_ids: image_ids,
                     function(resp){
                         //alert(resp);
