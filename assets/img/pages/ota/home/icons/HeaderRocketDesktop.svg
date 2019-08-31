@@ -1,0 +1,191 @@
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <style type="text/css">
+.st0{fill:#2C6FFF;} .st1{fill:#FFF;} .st2{fill:#00369F;} .st3{fill:#00C0FF;} .st4{fill:#FFFFFF;}
+.content{
+	  transform: translate(-4.3em,-3.2em) scale(0.8,0.8);
+	  }
+.spaceship {
+	  animation: spaceship_position 10s infinite;
+	  transform: translate(0em,1.2em);
+	  }	
+@-webkit-keyframes spaceship_position {
+  50% {
+	transform: translate(0em,1.5em);
+  }
+}	
+.fire {animation: fire_position 0.5s infinite;}	
+@-webkit-keyframes fire_position {
+  50% {
+	transform: translate(0.59em,1.36em) scale(0.95,0.85);
+  }
+}	
+.circle_2 {animation: anim_circle_2 4s infinite linear;}
+@-webkit-keyframes anim_circle_2 {
+	0% {
+		transform: translate(11.5em,13.5em) scale(0,0);
+  	}
+	100% {
+		transform: translate(2em,2em) scale(0.8,0.8);
+  	}
+}	
+.circle_3 {animation: anim_circle_3 4s infinite linear;}
+@-webkit-keyframes anim_circle_3 {
+	0% {
+		transform: translate(2em,2em) scale(0.8,0.8);
+  	}
+	100% {
+		transform: translate(0em,0em) scale(1,1);
+  	}
+}	
+.circle_4 {animation: anim_circle_4 4s infinite linear;}
+@-webkit-keyframes anim_circle_4 {
+	0% {
+		transform: translate(0em,0em) scale(1,1);
+  	}
+	100% {
+		transform: translate(-4em,-2em) scale(1.2,1.2);
+  	}
+}
+.circle_5 {animation: anim_circle_5 4s infinite linear;}
+@-webkit-keyframes anim_circle_5 {
+	0% {
+		transform: translate(-4em,-2em) scale(1.2,1.2);
+  	}
+	100% {
+		transform: translate(-1em,3em) scale(0.8,0.8);
+  	}
+}	
+.circle_6 {animation: anim_circle_6 4s infinite linear;}
+@-webkit-keyframes anim_circle_6 {
+	0% {
+		transform: translate(-1em,3em) scale(0.8,0.8);
+  	}
+	100% {
+		transform: translate(-0.5em,5.5em) scale(0.6,0.6);
+  	}
+}	
+.circle_7 {animation: anim_circle_7 4s infinite linear;}
+@-webkit-keyframes anim_circle_7 {
+	0% {
+		transform: translate(-0.5em,5.5em) scale(0.6,0.6);
+  	}
+	100% {
+		transform: translate(-6em,-1.9em) scale(1,1);
+  	}
+}  
+.circle_9 {animation: anim_circle_9 4s infinite linear;}
+@-webkit-keyframes anim_circle_9 {
+	0% {
+    	transform: translate(-6em,-1.9em) scale(1,1);
+  	}
+	100% {
+		transform: translate(-13.5em,-11em) scale(1.5,1.5);
+	}
+}	  
+.circle_10 {animation: anim_circle_10 4s infinite linear;}
+@-webkit-keyframes anim_circle_10 {
+	0% {
+    	transform: translate(-13.5em,-11em) scale(1.5,1.5);
+  	}
+	100% {
+		transform: translate(-27.3em,-28em) scale(2.5,2.5);
+	}
+}		
+.circle_11 {animation: anim_circle_11 16s infinite linear;}
+@-webkit-keyframes anim_circle_11 {
+	0% {
+		transform: translate(-4em,-2em) scale(1.2,1.2);
+  	}
+	50% {
+		transform: translate(-5em,-2em) scale(1,1);
+  	}
+	100% {
+		transform: translate(-6em,2em) scale(0.8,0.8);
+  	}
+}	
+.circle_12 {animation: anim_circle_12 4s infinite linear;}
+@-webkit-keyframes anim_circle_12 {
+	0% {
+		transform: translate(0em,0em) scale(1,1);
+  	}
+	100% {
+		 transform: translate(-1em,-1em) scale(1.2,1.2);
+  	}
+}
+.circle_13 {animation: anim_circle_13 4s infinite linear;}
+@-webkit-keyframes anim_circle_13 {
+	0% {
+		transform: translate(-1em,-1em) scale(1.2,1.2);
+  	}
+	100% {
+		transform: translate(5.9em,3.2em) scale(0.8,0.8);
+  	}
+}
+.circle_14 {animation: anim_circle_14 4s infinite linear;}
+@-webkit-keyframes anim_circle_14 {
+	0% {
+		transform: translate(5.9em,3.2em) scale(0.8,0.8);
+  	}
+	100% {
+		transform: translate(10em,5.5em) scale(0.6,0.6);
+  	}
+}  
+.circle_15 {animation: anim_circle_15 4s infinite linear;}
+@-webkit-keyframes anim_circle_15 {
+	0% {
+		transform: translate(10em,5.5em) scale(0.6,0.6);
+  	}
+	100% {
+		transform: translate(6.2em,-1.9em) scale(1,1);
+  	}
+}
+.circle_16 {animation: anim_circle_16 4s infinite linear;}
+@-webkit-keyframes anim_circle_16 {
+	0% {
+		transform: translate(6.2em,-1.9em) scale(1,1);
+  	}
+	100% {
+		transform: translate(4.5em,-5.9em) scale(1.2,1.2);
+  	}
+}
+.circle_17 {animation: anim_circle_17 4s infinite linear;}
+@-webkit-keyframes anim_circle_17 {
+	0% {
+		transform: translate(4.5em,-5.9em) scale(1.2,1.2);
+  	}
+	100% {
+		transform: translate(3em,-12.5em) scale(1.5,1.5);
+  	}
+}	  
+.circle_19 {
+	 transform: translate(-2.5em,-1em) scale(1.2,1.2);
+}	  
+</style>
+    <circle class="st0" cx="80" cy="80" r="80"/>
+<g class="content">
+  <g class="st1">
+    <circle class="circle_2" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_3" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_4" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_5" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_6" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_7" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>  
+    <circle class="circle_9" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_10" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_11" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_12" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_13" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_14" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_15" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+    <circle class="circle_16" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>	  
+    <circle class="circle_17" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>		  
+    <circle class="circle_19" cx="184.3" cy="228.3" r="26.2" id="Layer_11_1_"/>
+  </g>
+  <g class="spaceship">
+    <path class="st3" d="M201.5 128c-.6 4.1-1.8 7.9-3.4 11.6.8.6 1.3 1 1.3 1.1h.2c2.9 1.1 4.1 5.6 3.1 11 1.7-1.8 3.3-4.4 4.4-7.4 2.5-6.9-1.5-14.8-5.2-16.1l-.4-.2zM173.5 128.6l-.5-.4c-3.6 1.3-7.6 9.3-5.2 16.1 1.1 3 2.7 5.6 4.4 7.4-1-5.4.2-10 3.1-11h.2s.5-.4 1.4-.9c-1.6-3.5-2.8-7.3-3.4-11.2z"/>
+    <path class="st3 fire" d="M192.3 151.5c0 2.8-2.3 11-5.1 11s-5.1-8.3-5.1-11c0-2.8 2.3-5.1 5.1-5.1 2.8.1 5.1 2.3 5.1 5.1z"/>
+    <path class="st4" d="M188.8 88c-.3-.3-1-.7-1.7-.7s-1.4.4-1.7.7c-8.5 8.6-13.8 20.5-13.8 33.6 0 7.9 1.9 15.4 5.3 21.9.3.6.9.8 1.5.5 2.5-1.5 5.4-2.3 8.6-2.3h.2c3.1 0 6 .9 8.6 2.3.6.3 1.2.1 1.5-.5 3.4-6.6 5.3-14 5.3-21.9 0-13.1-5.3-25-13.8-33.6z"/>
+    <circle class="st0" cx="187.1" cy="109" r="4.7"/>
+  </g>
+</g>
+</svg>
