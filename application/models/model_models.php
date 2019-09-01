@@ -7,8 +7,8 @@
                 return $q->result();
         }
         
-        public function galleries($product_id){
-            $this->db->where('product_id',$product_id);
+        public function galleries($model_id){
+            $this->db->where('model_id',$model_id);
             $this->db->select('*');
             $q = $this->db->get('galleries');
             return $q->result();
