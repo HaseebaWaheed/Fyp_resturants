@@ -9,8 +9,14 @@ class SignupModel extends CI_Model {
         /*$this->db->select('*');
         $this->db->where("id",$this->db->insert_id());
         return $this->db->get('users')->row();*/
-
         return $this->db->insert_id();
     }
+    function resturants($data1){
 
+        $id = $this->db->insert('resturants',$data1);
+        /*$this->db->select('*');
+        $this->db->where("id",$this->db->insert_id());
+        return $this->db->get('users')->row();*/
+        return $this->db->insert_id();
+    }
 }

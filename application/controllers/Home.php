@@ -32,8 +32,10 @@ class Home extends CI_Controller
 
     public function check_login()
     {
+        
         if(!empty($this->input->post()))
         {
+        
             $this->load->model('LoginModel');
             if($this->LoginModel->getUser_admin($this->input->post('email'),$this->input->post('password')))
             {
@@ -42,16 +44,20 @@ class Home extends CI_Controller
                     'type'      => 'admin'
                 );
                 $this->session->set_userdata($session_data);*/
-                redirect('./dashboard_admin');
+                redirect('./dishes');
             }
             else if($this->LoginModel->getUser_user($this->input->post('email'),$this->input->post('password')))
             {
-               /* $session_data = array(
+              // $user_id=$this->LoginModel->get_u_id('email');
+               $this->LoginModel->set_r_id();
+                $session_data = array(
                     'email'     => $this->input->post('email'),
-                    'type'      =>'user'
+                    'type'      =>'user',
                 );
-                $this->session->set_userdata($session_data);*/
-                redirect('./dashboard_user');
+                $this->session->set_userdata($session_data);
+              //  echo '<pre>'; print_r($this->session->all_userdata());exit;
+
+                redirect('./menu');
             }
             else
             {

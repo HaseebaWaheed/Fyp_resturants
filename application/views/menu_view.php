@@ -36,8 +36,10 @@
                 <table id="model_data" class="table table-bordered table-striped">  
                      <thead>  
                           <tr>  
-                               <th width="35%">Image</th>  
-                               <th width="35%">First Name</th>
+                               <th width="30%">Image</th>  
+                               <th width=15%>Name</th>
+                               <th width="20%">Dishes</th>
+                               <th width='20%'> Crop </th>
                                <th width="15%">Edit</th>  
                                <th width="15%">Delete</th>  
                           </tr>  
@@ -56,10 +58,11 @@
                           <h4 class="modal-title">Add Model</h4>  
                      </div>  
                      <div class="modal-body">  
-                          <label>Enter First Name</label>  
+                          <label>Enter Name</label>  
                           <input type="text" name="name" id="name" class="form-control" />  
                           <br />  
-                            
+                    
+                     <div class="modal-body">  
                           <label>Select model Image</label>  
                           <input type="file" name="model_image" id="model_image" />  
                           <span id="model_uploaded_image"></span>  
@@ -73,7 +76,31 @@
                 </div>  
            </form>  
       </div>
+ </div> 
+ <div id="modelModal1" class="modal fade">  
+      <div class="modal-dialog">  
+           <form method="post" id="model_form" enctype="multipart/form-data">  
+                <div class="modal-content">  
+                     <div class="modal-header">  
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                          <h4 class="modal-title">Crop Dishes</h4>  
+                     </div>  
+                     <div class="modal-body">  
+                          <input type="text" name="name" id="name" class="form-control" />  
+                          <br />  
+                    </div>
+              
+                     <div class="modal-footer">  
+                          <input type="hidden" name="model_id" id="model_id" />  
+                          <input type="hidden"  name = "operation" id="operation" value = "Crop" />
+                          <input type="submit"  name="action" id="action" class="btn btn-success" value="Crop" />  
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                     </div>  
+                </div>  
+           </form>  
+      </div>
  </div>  
+  
  <script type="text/javascript" language="javascript" >  
  $(document).ready(function(){  
       $('#add_button').click(function(){  
@@ -87,12 +114,12 @@
                "serverSide":true,  
                "order":[],  
                "ajax":{  
-                    url:"<?php echo base_url() . 'dishes/fetch_model'; ?>",  
+                    url:"<?php echo base_url() . 'menu/fetch_model'; ?>",  
                     type:"POST"  
                },  
                "columnDefs":[  
                     {  
-                         "targets":[0, 1, 2],  
+                         "targets":[0, 3, 4],  
                          "orderable":false,  
                     }  
                ],  
@@ -116,7 +143,7 @@
            {  
           
                 $.ajax({  
-                     url:"<?php echo base_url() . 'dishes/model_action'?>",  
+                     url:"<?php echo base_url() . 'menu/model_action'?>",  
                      method:'POST',  
                      data:new FormData(this),  
                      contentType:false,  
@@ -134,12 +161,13 @@
            else  
            {  
                 alert("Fields are Required");  
+    
            }  
       });  
       $(document).on('click', '.update', function(){  
            var model_id = $(this).attr("id");  
            $.ajax({  
-                url:"<?php echo base_url(); ?>dishes/fetch_single_model",  
+                url:"<?php echo base_url(); ?>menu/fetch_single_model",  
                 method:"POST",  
                 data:{model_id:model_id},  
                 dataType:"json",  
@@ -160,7 +188,7 @@
            if(confirm("Are you sure you want to delete this?"))  
            {  
                 $.ajax({  
-                     url:"<?php echo base_url(); ?>dishes/delete_single_model",  
+                     url:"<?php echo base_url(); ?>menu/delete_single_model",  
                      method:"POST",  
                      data:{model_id:model_id},  
                      success:function(data)  
@@ -174,15 +202,14 @@
            {  
                 return false;
            }  
-      });
+      });  
       $(document).on('click', '.crop', function(){  
-
-          var model_id = $(this).attr("id");  
-           $.ajax({  
-                url:"<?php echo base_url(); ?>dishes/fetch_single_model",  
-                method:"POST",  
-                data:{model_id:model_id},  
-                dataType:"json",  
+           var model_id = $(this).attr("id");   
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>menu/fetch_single_model",  
+                     method:"POST",  
+                     data:{model_id:model_id},  
+                     dataType:"json",  
                 success:function(data)  
                 {  
                      $('#modelModal').modal('show');  
@@ -190,25 +217,11 @@
                      $('.modal-title').text("Crop model");  
                      $('#model_id').val(model_id);  
                      $('#model_uploaded_image').html(data.model_image);  
-                     $('#operation').val("Crop");
-                     $('#action').val("Crop");  
-                }  
-           })  
-         /*  var model_id = $(this).attr("id");  
-      
-      var size;
-          $('#cropbox').Jcrop({
-               aspectRatio: 1,
-               onSelect: function(c){
-               size = {x:c.x,y:c.y,w:c.w,h:c.h};
-               $("#crop").css("visibility", "visible");     
-               }
-          });
-          
-          $("#crop").click(function(){
-               var img = $("#cropbox").attr('src');
-               $("#cropped_img").show();
-               $("#cropped_img").attr('src','image-crop.php?x='+size.x+'&y='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img);
-          }); */
+                     
+
+                }
+                });  
+           
+      })
  });  
  </script>  

@@ -29,6 +29,11 @@ class Register extends CI_Controller {
             );
             $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
             $id = $this->SignUpModel->signup_user($data);
+            $data1=array(
+                'user_id'=> $id,
+                'name'  => $this->input->post('username')
+            );
+            $id1=$this->SignUpModel->resturants($data1);
             if($id>0)
             {
                 redirect('./dashboard_user');
