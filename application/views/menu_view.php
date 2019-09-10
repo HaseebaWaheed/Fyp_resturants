@@ -11,7 +11,7 @@
    <style>  
            body  
            {  
-                margin:0;  
+                margin:0;
                 padding:0;  
                 background-color:#f1f1f1;  
            }  
@@ -36,12 +36,11 @@
                 <table id="model_data" class="table table-bordered table-striped">  
                      <thead>  
                           <tr>  
-                               <th width="30%">Image</th>  
-                               <th width=15%>Name</th>
+                               <th width="20%">Image</th>  
+                               <th width=20%>Name</th>
                                <th width="20%">Dishes</th>
-                               <th width='20%'> Crop </th>
-                               <th width="15%">Edit</th>  
-                               <th width="15%">Delete</th>  
+                               <th width="20%">Edit</th>  
+                               <th width="20%">Delete</th> 
                           </tr>  
                      </thead>  
                 </table>  
@@ -51,7 +50,7 @@
  </html>  
  <div id="modelModal" class="modal fade">  
       <div class="modal-dialog">  
-           <form method="post" id="model_form" enctype="multipart/form-data">  
+           <form method="post" id="model_form" enctype="multipart/form-data"> 
                 <div class="modal-content">  
                      <div class="modal-header">  
                           <button type="button" class="close" data-dismiss="modal">&times;</button>  
@@ -77,30 +76,8 @@
            </form>  
       </div>
  </div> 
- <div id="modelModal1" class="modal fade">  
-      <div class="modal-dialog">  
-           <form method="post" id="model_form" enctype="multipart/form-data">  
-                <div class="modal-content">  
-                     <div class="modal-header">  
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                          <h4 class="modal-title">Crop Dishes</h4>  
-                     </div>  
-                     <div class="modal-body">  
-                          <input type="text" name="name" id="name" class="form-control" />  
-                          <br />  
-                    </div>
-              
-                     <div class="modal-footer">  
-                          <input type="hidden" name="model_id" id="model_id" />  
-                          <input type="hidden"  name = "operation" id="operation" value = "Crop" />
-                          <input type="submit"  name="action" id="action" class="btn btn-success" value="Crop" />  
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
-                     </div>  
-                </div>  
-           </form>  
-      </div>
- </div>  
-  
+ 
+
  <script type="text/javascript" language="javascript" >  
  $(document).ready(function(){  
       $('#add_button').click(function(){  
@@ -203,25 +180,31 @@
                 return false;
            }  
       });  
-      $(document).on('click', '.crop', function(){  
-           var model_id = $(this).attr("id");   
-                $.ajax({  
-                     url:"<?php echo base_url(); ?>menu/fetch_single_model",  
+      
+      $(document).on('click', '.dishes', function(){  
+           console.log("on click dishes");
+           var model_id = $(this).attr("id");
+           console.log(model_id);
+          
+          $.ajax({  
+                     url:"<?php echo base_url(); ?>menu/model_action",  
                      method:"POST",  
-                     data:{model_id:model_id},  
+                     data:{model_id:model_id,
+                     operation:"Dishes"},
                      dataType:"json",  
-                success:function(data)  
-                {  
-                     $('#modelModal').modal('show');  
-                     $('#name').val(data.name);  
-                     $('.modal-title').text("Crop model");  
-                     $('#model_id').val(model_id);  
-                     $('#model_uploaded_image').html(data.model_image);  
-                     
-
-                }
-                });  
-           
-      })
+                     success:function(data)  
+                     {  
+                         //alert("Are you sure?");
+                         $('#model_id').val(model_id);  
+                         //location.href = data.url_path;
+                       //  redirect('./dishes');
+                         
+                     } 
+                    /* error: function(xhr, status, error) {
+                                   alert(status);
+                                   alert(xhr.responseText);
+                    }*/
+                });
+      });  
  });  
  </script>  

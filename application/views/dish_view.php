@@ -11,7 +11,7 @@
    <style>  
            body  
            {  
-                margin:0;  
+                margin:0;
                 padding:0;  
                 background-color:#f1f1f1;  
            }  
@@ -36,10 +36,11 @@
                 <table id="model_data" class="table table-bordered table-striped">  
                      <thead>  
                           <tr>  
-                               <th width="35%">Image</th>  
-                               <th width="35%">First Name</th>
-                               <th width="15%">Edit</th>  
-                               <th width="15%">Delete</th>  
+                               <th width="20%">Image</th>  
+                               <th width=20%>Name</th>
+                               <th width="20%">Details</th>
+                               <th width="20%">Edit</th>  
+                               <th width="20%">Delete</th> 
                           </tr>  
                      </thead>  
                 </table>  
@@ -49,19 +50,30 @@
  </html>  
  <div id="modelModal" class="modal fade">  
       <div class="modal-dialog">  
-           <form method="post" id="model_form" enctype="multipart/form-data">  
+           <form method="post" id="model_form" enctype="multipart/form-data"> 
                 <div class="modal-content">  
                      <div class="modal-header">  
                           <button type="button" class="close" data-dismiss="modal">&times;</button>  
                           <h4 class="modal-title">Add Model</h4>  
                      </div>  
                      <div class="modal-body">  
-                          <label>Enter First Name</label>  
+                          <label>Enter Name</label>  
                           <input type="text" name="name" id="name" class="form-control" />  
                           <br />  
-                            
-                          <label>Select model Image</label>  
-                          <input type="file" name="model_image" id="model_image" />  
+                          <div class="modal-body">  
+                           <label> Servings</label>
+                            <input type="text "name= "servings" id="servings" class="form-control"/>
+                            <br />          
+                             <div class="modal-body">  
+                             <label> Ingridients </label>
+                            <input type="text "name= "ingridients" id="ingridients" class="form-control"/>
+                            <br />
+                            <div class="modal-body">  
+                            <label> Price </label>
+                            <input type="text "name= "price" id="price" class="form-control"/>
+                            <br />
+
+                     <div class="modal-body">  
                           <span id="model_uploaded_image"></span>  
                      </div>  
                      <div class="modal-footer">  
@@ -73,7 +85,9 @@
                 </div>  
            </form>  
       </div>
- </div>  
+ </div> 
+ 
+
  <script type="text/javascript" language="javascript" >  
  $(document).ready(function(){  
       $('#add_button').click(function(){  
@@ -81,8 +95,7 @@
            $('.modal-title').text("Add model");  
            $('#action').val("Add");  
            $('#model_uploaded_image').html('');  
-     });
- });  
+     });  
      var dataTable = $('#model_data').DataTable({  
                "processing":true,  
                "serverSide":true,  
@@ -93,7 +106,7 @@
                },  
                "columnDefs":[  
                     {  
-                         "targets":[0, 1, 2],  
+                         "targets":[0, 3, 4],  
                          "orderable":false,  
                     }  
                ],  
@@ -135,6 +148,7 @@
            else  
            {  
                 alert("Fields are Required");  
+    
            }  
       });  
       $(document).on('click', '.update', function(){  
@@ -175,41 +189,8 @@
            {  
                 return false;
            }  
-      });
-      $(document).on('click', '.crop', function(){  
-
-          var model_id = $(this).attr("id");  
-           $.ajax({  
-                url:"<?php echo base_url(); ?>dishes/fetch_single_model",  
-                method:"POST",  
-                data:{model_id:model_id},  
-                dataType:"json",  
-                success:function(data)  
-                {  
-                     $('#modelModal').modal('show');  
-                     $('#name').val(data.name);  
-                     $('.modal-title').text("Crop model");  
-                     $('#model_id').val(model_id);  
-                     $('#model_uploaded_image').html(data.model_image);  
-                     $('#operation').val("Crop");
-                     $('#action').val("Crop");  
-                }  
-           })
       });  
-         /*  var model_id = $(this).attr("id");  
       
-      var size;
-          $('#cropbox').Jcrop({
-               aspectRatio: 1,
-               onSelect: function(c){
-               size = {x:c.x,y:c.y,w:c.w,h:c.h};
-               $("#crop").css("visibility", "visible");     
-               }
-          });
-          
-          $("#crop").click(function(){
-               var img = $("#cropbox").attr('src');
-               $("#cropped_img").show();
-               $("#cropped_img").attr('src','image-crop.php?x='+size.x+'&y='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img);
-          }); */  
+        
+ });  
  </script>  

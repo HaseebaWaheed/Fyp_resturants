@@ -1,9 +1,9 @@
- <?php  
- class Menu_model extends CI_Model  
+<?php  
+ class Dish_model extends CI_Model  
  {  
-      var $table = "menu_card";  
-      var $select_column = array("id", 'name',"menu_pic","r_id");  
-      var $order_column = array(null, null,"menu_pic", "r_id");  
+      var $table = "dishes";  
+      var $select_column = array("id", 'name',"dish_pic","menu_id","serving","ingredients","price");  
+      var $order_column = array(null, null,"dish_pic","menu_id",null,null,null );  
       function make_query()  
       {  
            $this->db->select($this->select_column);  
@@ -28,8 +28,8 @@
            {  
                 $this->db->limit($_POST['length'], $_POST['start']);  
            }  
-           $r_id=$this->session->userdata("r_id");
-           $this->db->where('r_id',$r_id);
+           $menu_id=$this->session->userdata("menu_id");
+           $this->db->where('menu_id',$menu_id);
            $query = $this->db->get();  
            return $query->result();  
       }  

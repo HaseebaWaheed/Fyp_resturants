@@ -15,11 +15,10 @@
                 $sub_array = array();  
                 $sub_array[] = '<img src="'.base_url().'/uploads/'.$row->menu_pic.'" class="img-thumbnail" width="50" height="35" />';  
                 $sub_array[] = $row->name;  
-                $sub_array[] = '<button type="button" name="dishes" id="'.$row->id.'" class="btn btn-warning btn-xs dishes">Dishes</button>';  
-                $sub_array[] = '<button type="button" name="crop" id="'.$row->id.'" class="btn btn-warning btn-xs crop">Crop</button>';  
+                $sub_array[] = '<button type="button" name="dishes" id="'.$row->id.'" class="btn btn-info btn-xs dishes">Dishes</button>';    
                 $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs update">Update</button>';  
                 $sub_array[] = '<button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs delete">Delete</button>';  
-                $sub_array[] = '<input type="hidden" name="operation" value="Edit"/>';
+                $sub_array[] = '<input type="text" name="operation" value="Edit"/>';
                 $data[] = $sub_array;  
            }  
            $output = array(  
@@ -32,11 +31,10 @@
       }  
       function model_action(){  
 
-       // echo '<pre>'; print_r($this->session->all_userdata());exit;
-
+       
           $user_data = $this->session->userdata('r_id');
            if($_POST["operation"] == "Add" )  
-           {  
+           { 
                 $insert_data = array(  
                      'name'          =>     $this->input->post('name'),  
                      'menu_pic'         =>     $this->upload_image() ,
@@ -67,9 +65,30 @@
                 $this->menu_model->update_crud($this->input->post("model_id"), $updated_data);  
                 echo 'Data Updated';  
            }  
-           if($_POST["operation"] == "Crop")  
+           if($_POST["operation"] == "Dishes")  
            {
-               $this->menu_model->fetch_single_model()  ;
+               /* $m_id=$this->input->post("model_id");
+               $this->session->set_userdata("menu_id",$m_id);
+               echo 'dish added';
+               echo '<pre>'; print_r($this->session->all_userdata());exit;*/
+
+
+
+               if(isset($_POST['model_id'])){   
+                    $id = $this->input->post("model_id");
+                      //echo '<pre>'; print_r($this->session->all_userdata());exit;
+                      echo json_encode($this->session->all_userdata());
+                      }
+                      else{
+                           foreach ($_POST as $key => $value) {
+                                # code...
+                                echo($value);
+                           }
+                           exit;
+                      }
+
+                    //  redirect('./dishes');
+
    
            }
       }  
