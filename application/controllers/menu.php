@@ -30,9 +30,7 @@
            echo json_encode($output);  
       }  
       function model_action(){  
-
-       
-          $user_data = $this->session->userdata('r_id');
+           $user_data = $this->session->userdata('r_id');
            if($_POST["operation"] == "Add" )  
            { 
                 $insert_data = array(  
@@ -46,7 +44,7 @@
            }  
            if($_POST["operation"] == "Edit")  
            {  
-            $user_data = $this->session->userdata('r_id');
+                $user_data = $this->session->userdata('r_id');
                 $model_image = '';  
                 if($_FILES["model_image"]["name"] != '')  
                 {  
@@ -67,29 +65,16 @@
            }  
            if($_POST["operation"] == "Dishes")  
            {
-               /* $m_id=$this->input->post("model_id");
-               $this->session->set_userdata("menu_id",$m_id);
-               echo 'dish added';
-               echo '<pre>'; print_r($this->session->all_userdata());exit;*/
-
-
-
-               if(isset($_POST['model_id'])){   
+                  if(isset($_POST['model_id'])){   
                     $id = $this->input->post("model_id");
-                      //echo '<pre>'; print_r($this->session->all_userdata());exit;
-                      echo json_encode($this->session->all_userdata());
-                      }
-                      else{
-                           foreach ($_POST as $key => $value) {
-                                # code...
-                                echo($value);
-                           }
-                           exit;
-                      }
-
-                    //  redirect('./dishes');
-
-   
+                    $this->session->set_userdata('model_id',$id);
+                    echo json_encode("success");
+                          //redirect('./Dishes');
+                   //  echo '<pre>'; print_r($this->session->all_userdata());exit;
+                    // echo json_encode($this->session->all_userdata());
+               }
+              // $this->load->library('../controllers/dishes');
+               //$this->dishes->index();
            }
       }  
       function upload_image()  

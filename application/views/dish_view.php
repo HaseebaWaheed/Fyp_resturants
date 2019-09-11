@@ -27,6 +27,13 @@
       </style>  
  </head>  
  <body>  
+ <h1><?php  $id = $this->session->get_userdata('model_id');
+               foreach($id as $value)
+               {
+                    echo $value;
+               }
+               echo $model_pic;
+ ?></h1>
       <div class="container box">  
            <h3 align="center"><?php echo $title; ?></h3><br />  
            <div class="table-responsive">  
@@ -39,8 +46,9 @@
                                <th width="20%">Image</th>  
                                <th width=20%>Name</th>
                                <th width="20%">Details</th>
-                               <th width="20%">Edit</th>  
-                               <th width="20%">Delete</th> 
+                               <th width="15%">Edit</th>  
+                               <th width="15%">Delete</th> 
+                               <th width="10"> Add Model</th>
                           </tr>  
                      </thead>  
                 </table>  
@@ -54,24 +62,22 @@
                 <div class="modal-content">  
                      <div class="modal-header">  
                           <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                          <h4 class="modal-title">Add Model</h4>  
+                          <h4 class="modal-title">Crop Dish</h4>  
                      </div>  
                      <div class="modal-body">  
                           <label>Enter Name</label>  
                           <input type="text" name="name" id="name" class="form-control" />  
                           <br />  
-                          <div class="modal-body">  
                            <label> Servings</label>
                             <input type="text "name= "servings" id="servings" class="form-control"/>
-                            <br />          
-                             <div class="modal-body">  
+                            <br />         
                              <label> Ingridients </label>
                             <input type="text "name= "ingridients" id="ingridients" class="form-control"/>
-                            <br />
-                            <div class="modal-body">  
+                            <br /> 
                             <label> Price </label>
                             <input type="text "name= "price" id="price" class="form-control"/>
                             <br />
+                            <img src="<?php echo(base_url());?>/uploads/<?php echo $model_pic; ?>" alt="menu image" height="500px"width="550px"/>
 
                      <div class="modal-body">  
                           <span id="model_uploaded_image"></span>  
@@ -191,6 +197,22 @@
            }  
       });  
       
-        
+      $(document).on('click', '.addModel', function(){  
+          var model_id = $(this).attr("id");  
+           $.ajax({  
+                url:"<?php echo base_url(); ?>menu/model_action",  
+                method:"POST",  
+                data:{
+                     model_id:model_id,
+                     operation:"addModel"
+                     },  
+                dataType:"json",  
+                success:function(data)  
+                {  
+                    window.location.href = './dish_model_controller';
+
+                }  
+           })  
+      }); 
  });  
  </script>  

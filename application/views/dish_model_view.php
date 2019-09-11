@@ -27,6 +27,12 @@
       </style>  
  </head>  
  <body>  
+ <h1><?php  $id = $this->session->get_userdata('model_id');
+               foreach($id as $value)
+               {
+                    echo $value;
+               }
+ ?></h1>
       <div class="container box">  
            <h3 align="center"><?php echo $title; ?></h3><br />  
            <div class="table-responsive">  
@@ -36,11 +42,9 @@
                 <table id="model_data" class="table table-bordered table-striped">  
                      <thead>  
                           <tr>  
-                               <th width="20%">Image</th>  
-                               <th width=20%>Name</th>
-                               <th width="20%">Dishes</th>
-                               <th width="20%">Edit</th>  
-                               <th width="20%">Delete</th> 
+                               <th width="40%">Image</th>  
+                               <th width=30%>Name</th>
+                               <th width="30%">Delete</th> 
                           </tr>  
                      </thead>  
                 </table>  
@@ -54,16 +58,18 @@
                 <div class="modal-content">  
                      <div class="modal-header">  
                           <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                          <h4 class="modal-title">Add Model</h4>  
+                          <h4 class="modal-title">Add model</h4>  
                      </div>  
+                     
                      <div class="modal-body">  
                           <label>Enter Name</label>  
                           <input type="text" name="name" id="name" class="form-control" />  
                           <br />  
                     
                      <div class="modal-body">  
-                          <label>Select model Image</label>  
+                         <label>Select model Image</label>  
                           <input type="file" name="model_image" id="model_image" />  
+                         
                           <span id="model_uploaded_image"></span>  
                      </div>  
                      <div class="modal-footer">  
@@ -141,31 +147,13 @@
     
            }  
       });  
-      $(document).on('click', '.update', function(){  
-           var model_id = $(this).attr("id");  
-           $.ajax({  
-                url:"<?php echo base_url(); ?>menu/fetch_single_model",  
-                method:"POST",  
-                data:{model_id:model_id},  
-                dataType:"json",  
-                success:function(data)  
-                {  
-                     $('#modelModal').modal('show');  
-                     $('#name').val(data.name);  
-                     $('.modal-title').text("Edit model");  
-                     $('#model_id').val(model_id);  
-                     $('#model_uploaded_image').html(data.model_image);  
-                     $('#operation').val("Edit");
-                     $('#action').val("Edit");  
-                }  
-           })  
-      });  
+        
       $(document).on('click', '.delete', function(){  
            var model_id = $(this).attr("id");  
            if(confirm("Are you sure you want to delete this?"))  
            {  
                 $.ajax({  
-                     url:"<?php echo base_url(); ?>menu/delete_single_model",  
+                     url:"<?php echo base_url(); ?>dishes/delete_single_model",  
                      method:"POST",  
                      data:{model_id:model_id},  
                      success:function(data)  
@@ -181,22 +169,6 @@
            }  
       });  
       
-      $(document).on('click', '.dishes', function(){  
-          var model_id = $(this).attr("id");  
-           $.ajax({  
-                url:"<?php echo base_url(); ?>menu/model_action",  
-                method:"POST",  
-                data:{
-                     model_id:model_id,
-                     operation:"Dishes"
-                     },  
-                dataType:"json",  
-                success:function(data)  
-                {  
-                    window.location.href = './dishes';
-
-                }  
-           })  
-      });  
+        
  });  
  </script>  

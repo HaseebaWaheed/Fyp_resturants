@@ -44,7 +44,7 @@ class Home extends CI_Controller
                     'type'      => 'admin'
                 );
                 $this->session->set_userdata($session_data);*/
-                redirect('./dishes');
+               // redirect('./dishes');
             }
             else if($this->LoginModel->getUser_user($this->input->post('email'),$this->input->post('password')))
             {

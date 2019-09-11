@@ -1,9 +1,9 @@
 <?php  
- class Dish_model extends CI_Model  
+ class Dish_model_model extends CI_Model  
  {  
-      var $table = "dishes";  
-      var $select_column = array("id", 'name',"dish_pic","menu_id","serving","ingridients","price");  
-      var $order_column = array(null, null,"dish_pic","menu_id",null,null,null );  
+      var $table = "dish_model";  
+      var $select_column = array("id", 'name',"model","dish_id");  
+      var $order_column = array(null, null,"model","dish_id");  
       function make_query()  
       {  
            $this->db->select($this->select_column);  
@@ -21,31 +21,15 @@
            {  
                 $this->db->order_by('id', 'DESC');  
            }  
-      }
-      // this function returns the image name to 
-      function get_pic_name($id){
-           $this->db->select("menu_pic");
-           $this->db->from("menu_card");
-           $this->db->where("id",$id);
-           $query = $this->db->get();
-          //  echo ($query->num_rows());
-           foreach ($query->result_array() as $key) {
-                # code...
-                return $key["menu_pic"];
-           }
-          //  exit;
-
-
-      }
-
+      }  
       function make_datatables(){  
            $this->make_query();  
            if($_POST["length"] != -1)  
            {  
                 $this->db->limit($_POST['length'], $_POST['start']);  
            }  
-           $menu_id=$this->session->userdata("menu_id");
-           $this->db->where('menu_id',$menu_id);
+           $dish_id=$this->session->userdata("dish_id");
+           $this->db->where('dish_id',$dish_id);
            $query = $this->db->get();  
            return $query->result();  
       }  
@@ -62,24 +46,24 @@
       }  
       function insert_crud($data)  
       {  
-           $this->db->insert('dishes', $data);  
+           $this->db->insert('dish_model', $data);  
       }  
       function fetch_single_model($model_id)  
       {  
            $this->db->where("id", $model_id);  
-           $query=$this->db->get('dishes');  
+           $query=$this->db->get('dish_model');  
            return $query->result();  
       }  
       function update_crud($model_id, $data)  
       {  
            $this->db->where("id", $model_id);  
-           $this->db->update('dishes', $data);  
+           $this->db->update('dish_model', $data);  
       }  
       function delete_single_model($model_id)  
       {  
            $result = $this->fetch_single_model($model_id);
            $this->db->where("id", $model_id);  
-           $this->db->delete('dishes');  
+           $this->db->delete('dish_model');  
            //DELETE FROM models WHERE id = '$model_id'  
            return $result;
       }  

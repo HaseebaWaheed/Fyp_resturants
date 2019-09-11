@@ -4,25 +4,13 @@
       //functions  
       function index(){  
 
-          $this->session->set_userdata("menu_id",$this->input->post("model_id"));
            $data["title"] = ' Dishes ' ;  
-           
+           $this->load->model('dish_model');
+          
+           // getting image from data base
+           $data["model_pic"]=$this->dish_model->get_pic_name($this->session->userdata('model_id'));
            $this->load->view('dish_view', $data);  
-          // echo '<pre>'; print_r($this->session->all_userdata());exit;
-      //$temp = json_decode(data);
-        //   echo $temp;
-        if(isset($_POST['model_id'])){   
-        $id = $this->input->post("model_id");
-          //echo '<pre>'; print_r($this->session->all_userdata());exit;
-          echo json_encode($this->session->all_userdata());
-          }
-          else{
-               foreach ($_POST as $key => $value) {
-                    # code...
-                    echo($value);
-               }
-               exit;
-          }  
+           
      }
       function fetch_model(){  
            $this->load->model("dish_model");  
@@ -34,7 +22,8 @@
                 $sub_array[] = '<img src="'.base_url().'/uploads/'.$row->model_pic.'" class="img-thumbnail" width="50" height="35" />';  
                 $sub_array[] = $row->name;  
                 $sub_array[] = '<button type="button" name="update" id="'.$row->id.'" class="btn btn-warning btn-xs update">Update</button>';  
-                $sub_array[] = '<button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs delete">Delete</button>';  
+                $sub_array[] = '<button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs delete">Delete</button>'; 
+                $sub_array[] = '<button type="button" name="addModel" id="'.$row->id.'" class="btn btn-00000000000000000000000 btn-xs dishes">addModel</button>';     
                 $sub_array[] = '<input type="hidden" name="operation" value="Edit"/>';
                 $data[] = $sub_array;  
            }  
@@ -47,26 +36,31 @@
            echo json_encode($output);  
       }  
       function model_action(){ 
- 
+          $user_data = $this->session->userdata('menu_id');
            if($_POST["operation"] == "Add")  
            {  
+              $insert_data = array(  
+                    'name'          =>     $this->input->post('name'),
+                   // 'dish_pic'     => ,
+                    'menu_id'      =>  $user_data,
+                    'serving '     => $this->input->post('serving'),
+                    'ingridients' => $this->input->post('ingridients'),
+                    'price '     => $this->input->post('price')
+               );  
 
-
+               $this->load->model('dish_model');  
+               $this->menu_model->insert_crud($insert_data);  
+               echo 'Data Inserted';
            }  
            if($_POST["operation"] == "Edit")  
            {  
-                $model_image = '';  
-                if($_FILES["model_image"]["name"] != '')  
-                {  
-                     $model_image = $this->upload_image();  
-                }  
-                else  
-                {  
-                     $model_image = $this->input->post("hidden_model_image");  
-                }  
+               
                 $updated_data = array(  
                      'name'          =>     $this->input->post('name'), 
-                     'model_pic'         =>     $model_image  
+                     'menu_id'      =>  $user_data,
+                     'serving '     => $this->input->post('serving'),
+                     'ingridients' => $this->input->post('ingridients'),
+                     'price '     => $this->input->post('price')
                 );  
                 $this->load->model('dish_model');  
                 $this->dish_model->update_crud($this->input->post("model_id"), $updated_data);  
