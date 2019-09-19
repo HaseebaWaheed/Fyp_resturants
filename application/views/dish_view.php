@@ -8,7 +8,12 @@
       <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-   <style>  
+
+          <script src="./libs/jquery.js" ></script>
+          <script src="./dist/rcrop.min.js" ></script>
+          <link href="./dist/rcrop.min.css" media="screen" rel="stylesheet" type="text/css">
+
+     <style>  
            body  
            {  
                 margin:0;
@@ -24,6 +29,7 @@
                 border-radius:5px;  
                 margin-top:10px;  
            }  
+
       </style>  
  </head>  
  <body>  
@@ -77,7 +83,7 @@
                             <label> Price </label>
                             <input type="text "name= "price" id="price" class="form-control"/>
                             <br />
-                            <img src="<?php echo(base_url());?>/uploads/<?php echo $model_pic; ?>" alt="menu image" height="500px"width="550px"/>
+                            <img id='image-3' src="<?php echo(base_url());?>/uploads/<?php echo $model_pic; ?>" alt="menu image" height="550px"width="550px"/>
 
                      <div class="modal-body">  
                           <span id="model_uploaded_image"></span>  
@@ -102,6 +108,26 @@
            $('#action').val("Add");  
            $('#model_uploaded_image').html('');  
      });  
+                     
+     $('#image-3').rcrop({
+                    minSize : [200,200],
+                    preserveAspectRatio : true,
+                    
+                    preview : {
+                        display: true,
+                        size : [100,100],
+                        wrapper : '#custom-preview-wrapper'
+                    }
+                });
+                
+      $('#image-3').on('rcrop-changed', function(){
+                var srcOriginal = $(this).rcrop('getDataURL');
+                var srcResized = $(this).rcrop('getDataURL', 50,50);
+                    
+                $('#cropped-original').append('<img src="'+srcOriginal+'">');
+               $('#cropped-resized').append('<img src="'+srcResized+'">');
+          });   
+               
      var dataTable = $('#model_data').DataTable({  
                "processing":true,  
                "serverSide":true,  

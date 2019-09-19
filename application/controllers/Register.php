@@ -36,7 +36,7 @@ class Register extends CI_Controller {
             $id1=$this->SignUpModel->resturants($data1);
             if($id>0)
             {
-                redirect('./dashboard_user');
+                redirect('./menu');
             }
             else{
                 echo ("can't insert into database");
