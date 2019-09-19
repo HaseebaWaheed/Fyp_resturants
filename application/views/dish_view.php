@@ -33,13 +33,6 @@
       </style>  
  </head>  
  <body>  
- <h1><?php  $id = $this->session->get_userdata('model_id');
-               foreach($id as $value)
-               {
-                    echo $value;
-               }
-               echo $model_pic;
- ?></h1>
       <div class="container box">  
            <h3 align="center"><?php echo $title; ?></h3><br />  
            <div class="table-responsive">  
