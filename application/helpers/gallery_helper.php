@@ -88,3 +88,13 @@ if (!function_exists('getMultiImageBinary')) {
     }
 
 }
+if (!function_exists('render_view')) {
+
+    function render_view($view, $data) {
+        $CI =& get_instance();
+        $data['content'] = $view;
+        $data['data'] = $data;
+        $CI->load->view('template', $data);
+    }
+
+}
