@@ -94,5 +94,10 @@
            unlink('./uploads/'.$result[0]->model_pic);
            //echo 'Data Deleted';  
            //echo json_encode($result[0]);
-      }  
+      }
+      function test_header()
+      {
+
+          render_view('test', null);
+      }
  }

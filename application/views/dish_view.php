@@ -83,7 +83,7 @@
                             <label> Price </label>
                             <input type="text "name= "price" id="price" class="form-control"/>
                             <br />
-                            <img id='image-3' src="<?php echo(base_url());?>/uploads/<?php echo $model_pic; ?>" alt="menu image" height="550px"width="550px"/>
+                            <img id='image-3' class="form form-control" src="<?php echo(base_url());?>/uploads/<?php echo $model_pic; ?>" alt="menu image" height="500px"width=""/>
 
                      <div class="modal-body">  
                           <span id="model_uploaded_image"></span>  
@@ -116,7 +116,7 @@
                     preview : {
                         display: true,
                         size : [100,100],
-                        wrapper : '#custom-preview-wrapper'
+
                     }
                 });
                 
@@ -128,21 +128,21 @@
                $('#cropped-resized').append('<img src="'+srcResized+'">');
           });   
                
-     var dataTable = $('#model_data').DataTable({  
-               "processing":true,  
-               "serverSide":true,  
-               "order":[],  
-               "ajax":{  
-                    url:"<?php echo base_url() . 'dishes/fetch_model'; ?>",  
-                    type:"POST"  
-               },  
-               "columnDefs":[  
-                    {  
-                         "targets":[0, 3, 4],  
-                         "orderable":false,  
-                    }  
-               ],  
-          });
+     //var dataTable = $('#model_data').DataTable({
+     //          "processing":true,
+     //          "serverSide":true,
+     //          "order":[],
+     //          "ajax":{
+     //               url:"<?php //echo base_url() . 'dishes/fetch_model'; ?>//",
+     //               type:"POST"
+     //          },
+     //          "columnDefs":[
+     //               {
+     //                    "targets":[0, 3, 4],
+     //                    "orderable":false,
+     //               }
+     //          ],
+     //     });
       $(document).on('submit', '#model_form', function(event){  
            event.preventDefault();  
            var name = $('#name').val();
