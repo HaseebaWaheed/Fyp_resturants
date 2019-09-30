@@ -83,15 +83,15 @@ class NewTarget extends CI_Controller{
 	}
 
 	private function setHeaders(){
+        $this->load->library('SignatureBuilder');
 		$sb = 	new SignatureBuilder();
-		$date = new DateTime("now", new DateTimeZone("GMT"));
-
-		// Define the Date field using the proper GMT format
-		$this->request->setHeader('Date', $date->format("D, d M Y H:i:s") . " GMT" );
-		
-		$this->request->setHeader("Content-Type", "application/json" );
-		// Generate the Auth field value by concatenating the public server access key w/ the private query signature for this request
-		$this->request->setHeader("Authorization" , "VWS " . $this->access_key . ":" . $sb->tmsSignature( $this->request , $this->secret_key ));
+        try {
+            $date = new DateTime("now", new DateTimeZone("GMT"));
+        } catch (Exception $e) {
+        }
+		$header[] = ['Date'=>$date->format("D, d M Y H:i:s") . " GMT" ];
+        $header[] = ["Content-Type"=> "application/json" ];
+        $header[] = ["Authorization"  => "VWS " . $this->access_key . ":" . $this->SignatureBuilder->tmsSignature( $header , $this->secret_key )];
 
 	}
 
